@@ -1,0 +1,138 @@
+<!doctype html>
+<!-- 
+@project VFW Project 1
+@author  Ryan Faerman
+@term    September 2011
+-->
+<html>
+<head>
+	<!-- Meta Tags-->
+	<meta charset="utf-8" />
+	<meta name="description" content="An easy tool to manage your collection of Comic Books" />
+	<meta name="keywords" content="comics, comic books, comic tracker, awesome" />
+	<meta name="robots" content="index, follow" />
+	<meta name="viewport" content="width = device-width; initial-scale=1.0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	
+	<!-- Page Title-->
+	<title>Comic Books | Add Comic Book</title>
+	
+	<!-- CSS -->
+	<link rel="stylesheet" href="assets/css/comics.css" type="text/css" media="screen" charset="utf-8">
+	
+	<!-- JS -->
+	<script src="assets/js/comics.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+	<!-- content -->
+	
+	<h1>Comic Books</h1>
+	<!-- 
+	-text, 
+	-range, 
+	-checkbox, radio, 
+	-date, 
+	-submit
+	-textarea, 
+	-select,
+	clear data link
+	display data link
+	-->
+	<form action="#" method="post">
+		<fieldset>
+			<legend>Add Comic Book</legend>
+			
+			<div class="clearfix">
+				<label for="title">Title</label>
+				<div class="input">
+					<input type="text" class="large" name="title" id="title" />
+					<span class="help">For example: "Punisher: War Journal"</span>
+				</div>
+			</div><!-- /field -->
+
+			
+			<div class="clearfix">
+				<label for="rating">Rating</label>
+				<div class="input">
+					<input type="range" class="large" name="range" id="range" min="0" max="10" value="6" />
+					<span class="help">On a scale of 1-10</span>
+				</div>
+			</div><!-- /field -->
+			
+			<div class="clearfix">
+				<label id="condition">Condition</label>
+				<div class="input">
+					<ul class="inputs-list">
+						<li>
+							<label>
+								<input type="radio" value="Mint" name="condition">
+								<span>New</span>
+							</label>
+						</li>
+						<li>
+							<label>
+								<input type="radio" value="Like New" name="condition">
+								<span>Like New</span>
+							</label>
+						</li>
+						<li>
+							<label>
+								<input type="radio" value="Good" name="condition">
+								<span>Good</span>
+							</label>
+						</li>
+						<li>
+							<label>
+								<input type="radio" value="Okay" name="condition">
+								<span>Okay</span>
+							</label>
+						</li>
+						<li>
+							<label>
+								<input type="radio" value="Bad" name="condition">
+								<span>Bad</span>
+							</label>
+						</li>
+					</ul>
+				</div>
+			</div> <!-- /field -->
+			
+			<div class="clearfix">
+				<label for="pubdate">Publish Date</label>
+				<div class="input">
+					<input type="date" class="large" name="pubdate" id="pubdate" />
+				</div>
+			</div><!-- /field -->
+			
+			<div class="clearfix">
+				<label for="summary">Summary</label>
+				<div class="input">
+					<textarea class="large" name="summary" id="summary" rows="5"></textarea>
+					<span class="help">Try not to give too many spoilers</span>
+				</div>
+			</div><!-- /field -->
+			
+			<div class="clearfix">
+				<label for="age_group">Age Group</label>
+				<div class="input">
+					<select class="large" name="age_group" id="age_group">
+						<option>Everyone</option>
+						<option>Teens (&lth; 18)</option>
+						<option>Mature (18+)</option>
+					</select>
+				</div>
+			</div><!-- /field -->
+			
+			<div class="actions">
+				<button type="submit" class="btn primary">Save Comic Book</button>
+				<button type="reset" class="btn">Cancel</button>
+			</div>
+		</fieldset>
+	</form>
+	
+	<a href="#" class="btn primary">View Comic Books</a>
+	<a href="#" class="btn danger">Clear Stored Data</a>
+	
+</body>
+</html>

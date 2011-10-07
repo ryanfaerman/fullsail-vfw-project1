@@ -21,12 +21,85 @@ html * {
 
 body {
 	font: 16px Georgia, Times, Serif;
+	background-color: rgb(193,0,0);
 }
 
-h1,h2,h3,h4,h5 {
+h1,h2,h3,h4,h5, legend {
 	font-family: 'Bangers', Helvetica, Arial, Sans-Serif;
+	color: rgb(51,40,40);
+}
+
+h1 {
+	text-align: center;
+	margin-bottom: 10px;
+	letter-spacing: .1em;
 }
 
 .container {
+	background-color: rgb(255,237,237);
+	width: 310px;
+	margin: 20px auto;
+	padding: 10px;
+	border: 10px solid rgb(0,40,148);
+	border-radius: 3px;
+}
+.btn.cta {
+	display: block;
+	width: 150px;
+	margin: 20px auto;
 	
+	text-align: center;
+	background: rgb(0,40,148);
+	color: #fff;
+	
+	border: 2px solid #000;
+	border-radius: 10px;
+	
+	text-decoration: none;
+	font-weight: bold;
+	
+	padding: 10px;
+	
+}
+
+.btn.cta small {
+	font-weight: normal;
+}
+
+
+
+fieldset {
+	border: none;
+	margin-bottom: 50px;
+}
+
+legend {
+	padding: 20px 0;
+}
+
+label {
+	display: block;	
+	font-weight: bold;
+	color: rgb(51,40,40);
+	
+}
+
+.clearfix {
+	margin-bottom: 10px;
+}
+
+input[type=text], input[type=range], input[type=date], textarea, select {
+	width: 90%;
+	border: 1px solid #ccc;
+	font-size: 1.3em;
+	border-radius: 3px;
+}
+
+input[type=text]:focus, input[type=date]:focus, textarea:focus {
+	border-color: #333;
+}
+
+fieldset ul {
+	list-style: none;
+	margin-left: 20px;
 }

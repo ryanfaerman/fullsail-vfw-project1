@@ -56,11 +56,11 @@ var getData = function() {
 	$('form').innerHTML = html;
 };
 
-var prepareSelect = function(){
-	ages = ["Everyone", "Teens (&lt; 18)", "Mature (18+)"];
+var prepareSelect = function(a){
+	
 	var html = '';
-	for(i in ages) {
-		html += '<option>'+ages[i]+'</option>';
+	for(i in a) {
+		html += '<option>'+a[i]+'</option>';
 	}
 	$('age_group').innerHTML = html;
 };
@@ -68,7 +68,7 @@ var prepareSelect = function(){
 // DOM Ready
 window.addEventListener("DOMContentLoaded", function(){
 	
-	prepareSelect();
+	prepareSelect(["Everyone", "Teens (&lt; 18)", "Mature (18+)"]);
 	
 	
 	$('submit').addEventListener('click', function(e){

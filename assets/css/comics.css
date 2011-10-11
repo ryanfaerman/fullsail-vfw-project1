@@ -99,7 +99,26 @@ input[type=text]:focus, input[type=date]:focus, textarea:focus {
 	border-color: #333;
 }
 
+input.error, textarea.error {
+	border: 5px solid rgb(193,0,0);
+}
+
 fieldset ul {
 	list-style: none;
 	margin-left: 20px;
+}
+
+#errorMsg {
+	padding: 5px;
+	margin: 10px;
+	color: rgb(193,0,0);
+	text-align: center;
+}
+
+div.item {
+	margin-bottom: 50px;
+}
+
+div.item ul {
+	list-style-type: none;
 }

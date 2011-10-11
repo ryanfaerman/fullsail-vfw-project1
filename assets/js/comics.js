@@ -20,7 +20,7 @@ var storage = {
 	}
 };
 
-var saveData = function() {
+var saveData = function(edit) {
 	var data = {
 		title: $('title').value,
 		rating: $('range').value,
@@ -28,16 +28,20 @@ var saveData = function() {
 		pubdate: $('pubdate').value,
 		summary: $('summary').value,
 		age_group: $('age_group').value,
-	}
+	};
 	
 	db = storage.get('db') || [];
-	db.push(data);
+	
+	console.log(edit);
+	
+	(edit) ? db[parseInt(edit.replace('edit_', ''))] = data : db.push(data);
 	storage.set('db', db);
 	
 	return data;
 };
 
 var form = '';
+
 var getData = function() {
 	db = storage.get('db') || [];
 	html = '';
@@ -50,10 +54,43 @@ var getData = function() {
 		html += '	<li><strong>Published Date</strong> '+r.pubdate+'</li>';
 		html += '	<li><strong>Summary</strong> '+r.summary+'</li>';
 		html += '	<li><strong>Age Group</strong> '+r.age_group+'</li>';
+		html += '	<li class="actions"><button type="button" class="editButton" value="'+i+'">Edit</button> <button type="button" class="deleteButton" value="'+i+'">Delete</button> </li>';
 		html += '</ul></div>';
 	}
-	form = $('form').innerHTML;
 	$('form').innerHTML = html;
+	
+	editButtons = document.getElementsByClassName('editButton');
+	deleteButtons = document.getElementsByClassName('deleteButton');
+	for(i=0; i < editButtons.length; i++) {
+		editButtons[i].addEventListener('click', function(){
+			db = storage.get('db') || [];
+			comic = db[this.value];
+			
+			resetForm();
+			
+			
+			$('title').value = comic.title;
+			$('range').value = comic.range;
+			$('favorite').checked = (comic.checked == 'yes');
+			$('pubdate').value = comic.pubdate;
+			$('summary').value = comic.summary;			
+			
+			$('submit').innerHTML = 'Edit Comic Book';
+			$('submit').value = 'edit_'+this.value;
+		});
+	}
+	
+	for(i=0; i < deleteButtons.length; i++) {
+		deleteButtons[i].addEventListener('click', function(){
+			db = storage.get('db') || [];
+			
+			db.splice(this.value, 1);
+			storage.set('db', db);
+			getData();
+			
+		
+		});
+	}
 };
 
 var prepareSelect = function(a){
@@ -65,15 +102,45 @@ var prepareSelect = function(a){
 	$('age_group').innerHTML = html;
 };
 
-// DOM Ready
-window.addEventListener("DOMContentLoaded", function(){
+var validate = function() {
+	var errors = {
+		title: !$('title').value,
+		rating: !$('range').value,
+		pubdate: !$('pubdate').value,
+		summary: !$('summary').value,
+		age_group: !$('age_group').value,
+	};
+	
+	passed = true;
+	for(i in errors) {
+		if(errors[i]) {
+			passed = false;
+			$(i).className += ' error';
+		}
+	}
+	
+	if(!passed) {
+		$('errorMsg').style.display = "block";
+	}
+	
+	return passed;
+};
+
+var resetForm = function() {
+	
+	$('form').innerHTML = form;
 	
 	prepareSelect(["Everyone", "Teens (&lt; 18)", "Mature (18+)"]);
 	
-	
 	$('submit').addEventListener('click', function(e){
 		e.preventDefault();
-		saveData();
+		
+		// validate data
+		if(validate()) {
+			// pass: alert success
+			saveData(this.value);
+			alert('Comic Book Saved');
+		} 	
 	});
 	
 	$('view_comics').addEventListener('click', function(e){
@@ -86,4 +153,19 @@ window.addEventListener("DOMContentLoaded", function(){
 		storage.clear();
 		window.location = window.location;
 	});
+};
+
+
+// DOM Ready
+window.addEventListener("DOMContentLoaded", function(){
+	form = $('form').innerHTML;
+	
+	
+	resetForm();
+	
+	
+	
+	// edit comic
+	
+	// delete comic
 });

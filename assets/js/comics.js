@@ -43,11 +43,35 @@ var saveData = function(edit) {
 var form = '';
 
 var getData = function() {
-	db = storage.get('db') || [];
+	db = storage.get('db') || [{
+		age_group: 'Everyone',
+		title: 'Spiderman Unlimited',
+		rating: 4,
+		favorite: 'yes',
+		pubdate: '2011-10-16',
+		summary: 'An awesome comic book about spiderman'
+	},
+	{
+		age_group: 'Mature (18+)',
+		title: 'Punisher Doomsday',
+		rating: 7,
+		favorite: 'yes',
+		pubdate: '2011-10-14',
+		summary: 'An awesome, gory, story about Frank Castle aka The Punishers'
+	}];
+
+	var images = {
+		'Everyone': 'everyone.png',
+		'Teens (< 18)': 'teens.png',
+		'Mature (18+)': 'mature.png'
+	};
+
 	html = '';
 	for(i in db) {
 		r = db[i];
+		console.log(r.age_group);
 		html += '<div class="item"><ul>';
+		html += '	<li><img src="assets/img/'+images[r.age_group]+'" /></li>';
 		html += '	<li><strong>Title</strong> '+r.title+'</li>';
 		html += '	<li><strong>Rating</strong> '+r.rating+'</li>';
 		html += '	<li><strong>Favorite</strong> '+r.favorite+'</li>';
@@ -68,10 +92,9 @@ var getData = function() {
 			
 			resetForm();
 			
-			
 			$('title').value = comic.title;
 			$('range').value = comic.range;
-			$('favorite').checked = (comic.checked == 'yes');
+			$('favorite').checked = (comic.favorite == 'yes');
 			$('pubdate').value = comic.pubdate;
 			$('summary').value = comic.summary;			
 			
@@ -97,7 +120,7 @@ var prepareSelect = function(a){
 	
 	var html = '';
 	for(i in a) {
-		html += '<option>'+a[i]+'</option>';
+		html += '<option id="'+a[i]+'">'+a[i]+'</option>';
 	}
 	$('age_group').innerHTML = html;
 };
